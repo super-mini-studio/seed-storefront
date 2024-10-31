@@ -2,6 +2,9 @@ name: Verify Seed Storefront Workflow
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   install:
