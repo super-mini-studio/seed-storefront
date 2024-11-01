@@ -3,21 +3,22 @@ name: Verify Seed Storefront Workflow
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
-  install:
+  verify:
     name: Install Dependencies
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{github.event.pull_request.head.ref}}
           repository: ${{github.event.pull_request.head.repo.full_name}}
       - name: Install and Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
       - name: NPM Install
         run: |
           npm ci
